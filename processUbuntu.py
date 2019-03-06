@@ -13,33 +13,36 @@ def process(lines):
 	lenOfLines = len(lines)
 	while (currLine <= lastLine):
 		convo = getCurrConvo(currLine, lines, lenOfLines)
+		#print convo
 		filteredConvo = filterRepeatedLines(convo)
-		(newPrompts, newResponses) = getPromptsAndResponses(filteredConvo)
+		coalescedConvo = coalesceConvo(filteredConvo)
+		#print "**********"
+		#print filteredConvo
+		#print "**********"
+		#print coalescedConvo
+		(newPrompts, newResponses) = getPromptsAndResponses(coalescedConvo)
+		#print newPrompts
+		#print newResponses
+		#print "**********"
 		prompts += newPrompts
 		responses += newResponses
 		currLine += len(convo)
-	return (prompts, responses)
+	return (prompts, responses)		
 
 def getCurrConvo(currLineInd, lines, lenOfLines):
 	currLine = lines[currLineInd]
-	#print currLine
-	currSender = lines[0][0]
-	#print currSender
+	currSender = lines[currLineInd][0]
 	nextLineInd = currLineInd + 1
-	#print nextLineInd
+	lastSender  = ""
 	# maybe check here if currReceiver is empty string, because if not then it's not the start of a convo
 	while (nextLineInd < lenOfLines):
-		#print nextLineInd
 		nextLine = lines[nextLineInd]
-		#print nextLine
 		(s, r) = (nextLine[0], nextLine[1])
-		#print s
-		#print r
 		if (currSender not in [s, r]):
 			return lines[currLineInd:nextLineInd]
 		else:
 			nextLineInd += 1
-	return lines[currLineInd:nextLineInd]
+	return lines[currLineInd:]
 
 def filterRepeatedLines(convo):
 	currLine = convo[0]
@@ -51,6 +54,20 @@ def filterRepeatedLines(convo):
 		currLine = l
 	return res
 
+def coalesceConvo(convo):
+	# this needs to be run after filterRepeatedLines(convo) because otherwise
+	# it will combine identical / repeated lines
+	currLine = convo[0]
+	res = []
+	res.append(currLine)
+	for l in convo[1:]:
+		if ((l[0] == currLine[0]) and (l[1] == currLine[1])):
+			res[len(res)-1][2] += (" " + l[2])
+		else:
+			res.append(l)
+			currLine = l
+	return res
+
 def getPromptsAndResponses(convo):
 	lenOfConvo = len(convo)
 	ps = []
@@ -60,42 +77,43 @@ def getPromptsAndResponses(convo):
 		rs.append(l[2])
 		if (i < lenOfConvo):
 			ps.append(l[2])
+        #print "************************"
+        #print ps
+        #print rs
+        #print "************************" 
 	return (ps, rs)
 
+fs196 = ["partial196aa",
+      "partial196ab",
+      "partial196ac",
+      "partial196ad",
+      "partial196ae",
+      "partial196af",
+      "partial196ag",
+      "partial196ah",
+      "partial196ai",
+      "partial196aj"]
 
-(fn1, fn2, fn3) = ("dialogueText_196.csv", "dialogueText_301.csv", "dialogueText.csv")
+fs301 = ["partial301aa",
+         "partial301ab",
+         "partial301ac",
+         "partial301ad",
+         "partial301ae",
+         "partial301af",
+         "partial301ag",
+         "partial301ah",
+         "partial301ai",
+         "partial301aj",
+         "partial301ak",
+         "partial301al",
+         "partial301am",
+         "partial301an",
+         "partial301ao",
+         "partial301ap",
+         "partial301aq",
+         "partial301ar"]
 
-files = ['partial301aa',
- 'partial301ab',
- 'partial301ac',
- 'partial301ad',
- 'partial301ae',
- 'partial301af',
- 'partial301ag',
- 'partial301ah',
- 'partial301ai',
- 'partial301aj',
- 'partial301ak',
- 'partial301al',
- 'partial301am',
- 'partial301an',
- 'partial301ao',
- 'partial301ap',
- 'partial301aq',
- 'partial301ar'] # result of splitting file by lines at a little over 953000
-
-files196 = ['partial196aa',
- 'partial196ab',
- 'partial196ac',
- 'partial196ad',
- 'partial196ae',
- 'partial196af',
- 'partial196ag',
- 'partial196ah',
- 'partial196ai',
- 'partial196aj']
-
-for f in files196:
+for f in fs196:
 	print f
 	o = open(f)
 	print "reading lines"
@@ -109,7 +127,9 @@ for f in files196:
 	(p,r) = process(op)
 	print "saving files now"
 	saveFile("\n".join(p), "prompts.txt")
-	saveFile("\n".join(r), "responses.txt")
+	saveFile("\n".join(r), "responses.txt")        
+
+(fn1, fn2, fn3) = ("dialogueText_196.csv", "dialogueText_301.csv", "dialogueText.csv")
 
 (of1, of2, of3) = (open(fn1), open(fn2), open(fn3))
 
