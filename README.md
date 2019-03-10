@@ -29,17 +29,27 @@ For separated-column-type text data (i.e. movie corpus), `nltk.tokenize` library
 After removing non-related headers, tags and separators, we found that the text data still contains lots of non-Unicode characters which could raise error when training. In this case, we simply check each line and keep only alphabetical characters and basic symbols.
 
 ## File Structure
-### /root
+
+### ./transformer
 This is the root directory of the project, containing Transformer modules, training script and evaluation script.
 
-### /chatbotData
+### ./transformer/chatbotData
 This directory has all the raw data extracted from multiple sources, the preprocessing scripts and cleaned data.
 
-### /models
+### ./transformer/models
 This directory is where the trained model being stored.
 
-## Result
-Check out a quick demo video [here](https://github.com/ThePenultimatum/shriekinDesparado/blob/dev/media/demo.mp4)
+### ./media
+This directory contains a demonstration. Check out the quick demo video [here](https://github.com/ThePenultimatum/shriekinDesparado/blob/dev/media/demo.mp4)
+
+### ./processing
+This is the directory containing all of the processing and data scraping scripts we used in order to construct the input prompts.txt and responses.txt files for training the model.
+
+### ./scripts
+This is a directory containing any shell runscripts. Currently, there is only trainAndPredict.sh which runs the preprocessing, training, and evaluation all in one script. This can be executed with the following command:
+```bash
+./trainAndPredict
+```
 
 ## Getting Started
 
