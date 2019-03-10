@@ -1,18 +1,45 @@
-# Chatbot based on the Transformer Model
+# A Chatbot based on NLP and Transformer
+**Mark Dyehouse, Yuchen Wang**
 
-This is a chatbot built in Python based on the Transformer model for deep learning. 
+*Northwestern University*
+
+## Introduction
+This main goal of this project is to implement a chit-chat bot using Transformer, which is a state-of-art model with Attention. ...
+
+## Requirement
+* Tensorflow 
+* NLTK
+* Regex
+* Numpy
+* JSON
+* GPU(not necessary, for optimized running)
+
+## Data
+One major part of this project is to collect and preprocess as much data as we could to feed into the model and improve the performance. There are several dataset source being used for this project: [Cornell Movie Dialogs Corpus](http://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html), Twitter Chat Corpus, Ubuntu Chat Dialogues and [Reddit Comment Threads](https://www.reddit.com/r/datasets/comments/3bxlg7/i_have_every_publicly_available_reddit_comment/).
+
+All these raw data are in different formats, size, and storage methods. In order to apply all of these data to one model, we have to **pre-process** them.
+
+## Pre-processing
+NLTK and Regex have been the two mainly used tools for data pre-processing.
+
+For separated-column-type text data (i.e. movie corpus), `nltk.tokenize` library or `split()` function from Regex could both easily split the raw text by space and retrieve the content of conversation. For nested JSON files (i.e. Reddit threads), `json.load()` and `string.filter()` functions could help finding useful json tags.
+
+After removing non-related headers, tags and separators, we found that the text data still contains lots of non-Unicode characters which could raise error when training. In this case, we simply check each line and keep only alphabetical characters and basic symbols.
+
+## File Structure
+### /root
+This is the root directory of the project, containing Transformer modules, training script and evaluation script.
+
+### /chatbotData
+This directory has all the raw data extracted from multiple sources, the preprocessing scripts and cleaned data.
+
+### /models
+This directory is where the trained model being stored.
+
+## Result
+(Show the video of User Interaction)
 
 ## Getting Started
-
-### Prerequisites
-
-* Python 2.7 or 3.6
-* TensorFlow
-* NumPy
-
-If training:
-*Ideally GPUs that TensorFlow can take advantage of
-*Otherwise, time. Training can take a while.
 
 ### Installing
 
