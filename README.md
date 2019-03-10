@@ -4,7 +4,9 @@
 *Northwestern University*
 
 ## Introduction
-The main goal of this project is to implement a chit-chat bot using Transformer, which is a state-of-art model with Attention. ...
+The main goal of this project is to implement a chit-chat bot using Transformer, which is a state-of-art model with Attention based on the paper from Google Brain, ["Attention is All You Need"](https://arxiv.org/abs/1706.03762).
+
+Through the command line interface, a can run the eval.py script and then interact with the chatbot by typing in prompts directly on the command line. Based on the data on which the model is trained, an appropriate response will be constructed and printed at the command line.
 
 ## Requirements
 * Tensorflow 
