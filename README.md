@@ -85,8 +85,10 @@ python eval.py
 This will bring up a command line prompt for you to type something into the command line and hit enter. This will submit your text to the trained model for prediction and will return a response predicted based on the training data.
 
 ## Deployment
+Using a pretrained model can expedite your chatbot experience. Here is a zip file with pretrained hyperparameters.
+[Mode](https://drive.google.com/open?id=1Tk3K46neJPiC2KITnt_fhLSLhBL0F8p3)
 
-## Built With
+This would be placed in the directory with eval.py when you run that.
 
 ## Contributing
 
