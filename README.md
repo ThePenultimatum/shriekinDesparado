@@ -4,7 +4,7 @@
 *Northwestern University*
 
 ## Introduction
-This main goal of this project is to implement a chit-chat bot using Transformer, which is a state-of-art model with Attention. ...
+The main goal of this project is to implement a chit-chat bot using Transformer, which is a state-of-art model with Attention. ...
 
 ## Requirements
 * Tensorflow 
@@ -37,7 +37,7 @@ This directory has all the raw data extracted from multiple sources, the preproc
 This directory is where the trained model being stored.
 
 ## Result
-(Show the video of User Interaction)
+Check out a quick demo video [here](https://github.com/ThePenultimatum/shriekinDesparado/blob/dev/media/demo.mp4)
 
 ## Getting Started
 
