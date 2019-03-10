@@ -6,7 +6,7 @@
 ## Introduction
 This main goal of this project is to implement a chit-chat bot using Transformer, which is a state-of-art model with Attention. ...
 
-## Requirement
+## Requirements
 * Tensorflow 
 * NLTK
 * Regex
