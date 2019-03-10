@@ -28,6 +28,11 @@ Data will be in the format of two files for training.
 prompts.txt and responses.txt
 Each newline separated prompt and response in these files must be in order such that line 0 in each file corresponds to a prompt and response pair. If this is not the case, then the data will not be trained on properly.
 
+Run the preprocessing prepro.py
+```bash
+python prepro.py
+```
+
 Run train.py
 ```bash
 python train.py
@@ -46,7 +51,17 @@ This will bring up a command line prompt for you to type something into the comm
 
 ## Contributing
 
+If modifying or contributing to the transformer code, refer to Kyubyong Park's transformer repository contribution standards.
+
+If contributing to the modifications in our project here, please follow the following steps:
+Fork the repository
+Add your modifications to either the dev branch or a branch off of the dev branch
+Make a pull request with informative descriptions
+
 ## Versioning
+
+There is only one version as of now, and that is the version committed in the master branch.
+Master branch commits define the versions, but we will be utilizing tags for versions soon.
 
 ## Authors
 
