@@ -30,8 +30,8 @@ def takeIdsAndText(fs, columns):
 		for l in ls:
 			lineJson = json.loads(l)
 			firstBody = str(filter(lambda c: c in printable, lineJson['body'])).strip()
-			body = firstBody.replace("\n", " ")
-			tmp = firstBody.split(" ")
+			body = firstBody.split('\n')[0]
+			tmp = body.split(" ")
 			idval = str(filter(lambda c: c in printable, lineJson['id']))
 			pid = str(filter(lambda c: c in printable, lineJson['parent_id'][3:]))
 			if ((len(body) > 0) and (body[0] in abcs) and ("[removed]" not in body) and (body not in ["", " ", "\n", "\b", "\t", "\r\n"]) and (not body.isspace())):
@@ -49,7 +49,7 @@ def takeIdsAndText(fs, columns):
 		for k, v in responsesByParentId.iteritems():
 			if k in promptsById:
 				pb = promptsById[k]
-				if (len(pb) > 1) and (len(v) > 1):
+				if (len(pb) > 1) and (len(v) > 1): # and (not (pb.isspace() or v.isspace()))):
 					prompts.append(pb)
 					responses.append(v)
 		oprompts = open("prompts.txt", 'a')
